@@ -1,7 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import type { ApiErrorBody } from "@/types";
 import { ApiError } from "@/server/errors";
-import { assertProductionConfig } from "@/lib/env";
 import type { ZodTypeAny, ZodIssue } from "zod";
 
 export type { NextRequest };
@@ -34,7 +33,6 @@ export function handleApi<Ctx>(
 ): (req: NextRequest, ctx: Ctx) => Promise<NextResponse> {
   return async (req, ctx) => {
     try {
-      assertProductionConfig();
       return await handler(req, ctx);
     } catch (error) {
       if (error instanceof ApiError) return fail(error);

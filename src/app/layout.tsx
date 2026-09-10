@@ -10,7 +10,10 @@ export const metadata: Metadata = {
   },
   description:
     "Nexora is the project management and team collaboration platform for modern organizations — projects, tasks, sprints, chat, and analytics in one place.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL?.trim() ||
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
+  ),
   openGraph: {
     title: "Nexora",
     description: "Project management for modern teams.",
