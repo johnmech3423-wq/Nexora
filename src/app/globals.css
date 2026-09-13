@@ -1,0 +1,223 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ */
+/* Nexora design tokens (HSL triplets; mapped to Tailwind utilities)  */
+/* ------------------------------------------------------------------ */
+:root {
+  --background: hsl(228 26% 98%);
+  --foreground: hsl(233 22% 12%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(233 22% 12%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(233 22% 12%);
+  --primary: hsl(255 76% 60%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(232 20% 95%);
+  --secondary-foreground: hsl(233 18% 22%);
+  --muted: hsl(230 18% 95%);
+  --muted-foreground: hsl(231 12% 46%);
+  --accent: hsl(252 88% 96%);
+  --accent-foreground: hsl(256 55% 42%);
+  --destructive: hsl(0 76% 56%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --success: hsl(152 62% 42%);
+  --warning: hsl(38 92% 50%);
+  --border: hsl(230 17% 90%);
+  --input: hsl(230 17% 86%);
+  --ring: hsl(255 76% 60%);
+  --chart-1: hsl(255 76% 60%);
+  --chart-2: hsl(199 89% 52%);
+  --chart-3: hsl(152 62% 42%);
+  --chart-4: hsl(38 92% 50%);
+  --chart-5: hsl(338 82% 58%);
+  --chart-6: hsl(262 60% 65%);
+  --sidebar: hsl(233 24% 9%);
+  --sidebar-foreground: hsl(229 18% 88%);
+  --radius: 0.65rem;
+  --radius-sm: 0.4rem;
+  --radius-md: 0.55rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+.dark {
+  --background: hsl(232 25% 7%);
+  --foreground: hsl(228 20% 93%);
+  --card: hsl(232 22% 9.5%);
+  --card-foreground: hsl(228 20% 93%);
+  --popover: hsl(232 22% 9.5%);
+  --popover-foreground: hsl(228 20% 93%);
+  --primary: hsl(255 84% 68%);
+  --primary-foreground: hsl(233 30% 8%);
+  --secondary: hsl(231 16% 15%);
+  --secondary-foreground: hsl(228 18% 88%);
+  --muted: hsl(231 15% 14%);
+  --muted-foreground: hsl(230 12% 62%);
+  --accent: hsl(255 45% 20%);
+  --accent-foreground: hsl(255 85% 86%);
+  --destructive: hsl(0 70% 58%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --success: hsl(152 60% 48%);
+  --warning: hsl(38 92% 54%);
+  --border: hsl(230 14% 17%);
+  --input: hsl(230 14% 21%);
+  --ring: hsl(255 84% 68%);
+  --chart-1: hsl(255 84% 70%);
+  --chart-2: hsl(199 89% 56%);
+  --chart-3: hsl(152 62% 48%);
+  --chart-4: hsl(38 92% 56%);
+  --chart-5: hsl(338 82% 62%);
+  --chart-6: hsl(262 65% 70%);
+  --sidebar: hsl(233 24% 8%);
+  --sidebar-foreground: hsl(229 16% 84%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 24%, transparent);
+  }
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Slim, unobtrusive scrollbars */
+@layer base {
+  *::-webkit-scrollbar { width: 9px; height: 9px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--muted-foreground) 28%, transparent);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--muted-foreground) 45%, transparent);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* User-generated Markdown content (comments, task descriptions)      */
+/* ------------------------------------------------------------------ */
+.md {
+  line-height: 1.65;
+  overflow-wrap: break-word;
+  color: var(--foreground);
+}
+.md > *:first-child { margin-top: 0; }
+.md > *:last-child { margin-bottom: 0; }
+.md p { margin: 0.45rem 0; }
+.md h1, .md h2, .md h3, .md h4 { font-weight: 650; margin: 1.1rem 0 0.45rem; line-height: 1.3; }
+.md h1 { font-size: 1.3rem; } .md h2 { font-size: 1.15rem; } .md h3 { font-size: 1.02rem; } .md h4 { font-size: 0.95rem; }
+.md ul { list-style: disc; padding-left: 1.35rem; margin: 0.45rem 0; }
+.md ol { list-style: decimal; padding-left: 1.35rem; margin: 0.45rem 0; }
+.md li { margin: 0.2rem 0; }
+.md a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.md code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: color-mix(in oklab, var(--muted-foreground) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--muted-foreground) 14%, transparent);
+  border-radius: 5px;
+  padding: 0.1rem 0.32rem;
+}
+.md pre {
+  background: color-mix(in oklab, var(--foreground) 6%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.9rem;
+  overflow-x: auto;
+  margin: 0.6rem 0;
+}
+.md pre code { background: transparent; border: 0; padding: 0; font-size: 0.84em; }
+.md blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 0.85rem;
+  margin: 0.6rem 0;
+  color: var(--muted-foreground);
+}
+.md table { border-collapse: collapse; margin: 0.6rem 0; width: 100%; font-size: 0.9em; }
+.md th, .md td { border: 1px solid var(--border); padding: 0.35rem 0.6rem; text-align: left; }
+.md img { border-radius: var(--radius-md); max-width: 100%; }
+.md hr { border-color: var(--border); margin: 1rem 0; }
+
+/* Subtle background grid used on marketing sections */
+.nexora-grid-bg {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 4%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 55%, transparent 100%);
+}
+
+/* Radix/Headless scroll area refinement */
+[data-radix-scroll-area-viewport] { scrollbar-width: thin; }
